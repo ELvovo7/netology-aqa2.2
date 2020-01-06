@@ -1,4 +1,4 @@
-package myTests;
+package testDelivery;
 
 import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +20,7 @@ class CardDeliveryOrderTest {
     @DisplayName(value = "Check verification form with correct input")
     void checkVerificationFormWithCorrectInput() {
         open("http://localhost:9999");
-        $("[data-test-id=city] input").setValue("Нижний Новгород");
+        DefaultData.defaultCity();
         DefaultData.datePicker();
         DefaultData.defaultName();
         DefaultData.defaultPhone();
@@ -34,7 +34,7 @@ class CardDeliveryOrderTest {
     @DisplayName(value = "Wrong date selection test")
     void wrongDateSelectionTest() {
         open("http://localhost:9999");
-        $("[placeholder='Город']").setValue("Нижний Новгород");
+        DefaultData.defaultCity();
         $("[placeholder='Дата встречи']").sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         $("[placeholder='Дата встречи']").setValue(DefaultData.localDate.format(DateTimeFormatter.ofPattern("dd.MM.YYYY")));
         DefaultData.defaultName();
@@ -61,7 +61,7 @@ class CardDeliveryOrderTest {
     @DisplayName(value = "Wrong name selection test")
     void wrongNameSelectionTest() {
         open("http://localhost:9999");
-        $("[placeholder='Город']").setValue("Нижний Новгород");
+        DefaultData.defaultCity();
         DefaultData.datePicker();
         $("[name='name']").setValue("Razuvaev Ivan");
         DefaultData.defaultPhone();
@@ -75,7 +75,7 @@ class CardDeliveryOrderTest {
     @DisplayName(value = "Wrong phone selection test")
     void wrongPhoneSelectionTest() {
         open("http://localhost:9999");
-        $("[placeholder='Город']").setValue("Нижний Новгород");
+        DefaultData.defaultCity();
         DefaultData.datePicker();
         DefaultData.defaultName();
         $("[name='phone']").setValue("+790123456");
@@ -101,7 +101,7 @@ class CardDeliveryOrderTest {
     @DisplayName(value = "Verification not agreement")
     void verificationNotAgreement() {
         open("http://localhost:9999");
-        $("[placeholder='Город']").setValue("Нижний Новгород");
+        DefaultData.defaultCity();
         DefaultData.datePicker();
         DefaultData.defaultName();
         DefaultData.defaultPhone();
@@ -134,7 +134,7 @@ class CardDeliveryOrderTest {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         String dateToUse = dateToBe.format(formatter);
         open("http://localhost:9999");
-        $("[placeholder='Город']").setValue("Нижний Новгород");
+        DefaultData.defaultCity();
         $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         $("[data-test-id=date] input").click();
         $("[data-test-id=date] input").setValue(dateToUse);

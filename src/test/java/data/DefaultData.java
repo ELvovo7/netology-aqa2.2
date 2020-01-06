@@ -11,6 +11,11 @@ import static com.codeborne.selenide.Selenide.$;
 public class DefaultData {
     public static LocalDate localDate = LocalDate.now();
 
+    public static String defaultCity() {
+        $("[data-test-id=city] input").setValue("Нижний Новгород");
+        return null;
+    }
+
     public static Date datePicker() {
         $("[placeholder='Дата встречи']").sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         $("[placeholder='Дата встречи']")
